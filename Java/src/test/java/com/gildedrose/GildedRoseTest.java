@@ -28,7 +28,7 @@ class GildedRoseTest {
         URL url = GildedRoseTest.class.getResource("/gilded-rose-10-days-results.txt");
         Path path = Paths.get(Objects.requireNonNull(url).toURI());
         String expected = new String(Files.readAllBytes(path));
-        String actual = printResult(11);
+        String actual = printResult(21);
         Assertions.assertThat(actual).isEqualTo(expected);
     }
 
