@@ -15,8 +15,8 @@ class GildedRoseTest {
             testee.updateQuality();
             result.append("-------- day " + day + " --------").append("\n");
             result.append("name, sellIn, quality").append("\n");
-            for (Item item: testee.items ) {
-                result.append(item.toString()).append("\n");
+            for (CleanItem cleanItem: testee.cleanItems() ) {
+                result.append(cleanItem.toString()).append("\n");
             }
         }
         Approvals.verify(result);

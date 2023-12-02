@@ -1,67 +1,23 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+import java.util.List;
+
 class GildedRose {
-    Item[] items;
+    List<CleanItem> cleanItems;
 
     public GildedRose(Item[] items) {
-        this.items = items;
+        cleanItems = Arrays.stream(items)
+            .map(item -> CleanItem.createCleanItem(item.name, item.sellIn, item.quality) )
+            .toList();
+    }
+
+    public List<CleanItem> cleanItems() {
+        return cleanItems;
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            Item item = items[i];
-            doUpdateQuality(item);
-        }
+        cleanItems.forEach(CleanItem::doUpdateQuality);
     }
 
-    private static void doUpdateQuality(Item item) {
-        switch (item.name) {
-            case "Aged Brie" -> {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-                }
-                item.sellIn = item.sellIn - 1;
-                if (item.sellIn < 0) {
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
-                }
-            }
-            case "Backstage passes to a TAFKAL80ETC concert" -> {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-
-                    if (item.sellIn < 11) {
-                        if (item.quality < 50) {
-                            item.quality = item.quality + 1;
-                        }
-                    }
-
-                    if (item.sellIn < 6) {
-                        if (item.quality < 50) {
-                            item.quality = item.quality + 1;
-                        }
-                    }
-                }
-                item.sellIn = item.sellIn - 1;
-                if (item.sellIn < 0) {
-                    item.quality = 0;
-                }
-            }
-            case "Sulfuras, Hand of Ragnaros" -> {
-            }
-            default -> {
-                if (item.quality > 0) {
-                    item.quality = item.quality - 1;
-                }
-                item.sellIn = item.sellIn - 1;
-                if (item.sellIn < 0) {
-                    if (item.quality > 0) {
-                        item.quality = item.quality - 1;
-                    }
-                }
-            }
-        }
-
-    }
 }
