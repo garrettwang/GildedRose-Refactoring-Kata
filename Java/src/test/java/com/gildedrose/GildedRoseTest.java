@@ -3,8 +3,6 @@ package com.gildedrose;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 class GildedRoseTest {
 
     @Test
@@ -13,11 +11,10 @@ class GildedRoseTest {
         StringBuilder result = new StringBuilder();
         for (int day = 0; day < 21; day++) {
             testee.updateQuality();
-            result.append("-------- day " + day + " --------").append("\n");
+            result.append("-------- day ").append(day).append(" --------").append("\n");
             result.append("name, sellIn, quality").append("\n");
-            for (Item item : testee.items) {
-                result.append(item.toString()).append("\n");
-            }
+            testee.cleanItems()
+                .forEach(cleanItem -> result.append(cleanItem.toString()).append("\n"));
         }
         Approvals.verify(result.toString());
     }
