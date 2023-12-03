@@ -1,66 +1,28 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+import java.util.List;
+
 class GildedRose {
-    Item[] items;
+    List<CleanItem> cleanItems;
 
     public GildedRose(Item[] items) {
-        this.items = items;
+        cleanItems = Arrays.stream(items)
+            .map(GildedRose::apply)
+            .toList();
+    }
+
+    private static CleanItem apply(Item item) {
+        return CleanItem.createCleanItem(item.name, item.sellIn, item.quality);
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            Item item = items[i];
-            doUpdateQuality(item);
+        for (CleanItem cleanItem : cleanItems) {
+            cleanItem.doUpdateQuality();
         }
     }
 
-    private static void doUpdateQuality(Item item) {
-        switch (item.name) {
-            case "Aged Brie":
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-                }
-
-                item.sellIn = item.sellIn - 1;
-
-                if (item.sellIn < 0 && item.quality < 50) {
-                    item.quality = item.quality + 1;
-                }
-                break;
-            case "Backstage passes to a TAFKAL80ETC concert":
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-
-                    if (item.sellIn < 11 && item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
-
-                    if (item.sellIn < 6 && item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
-                }
-
-                item.sellIn = item.sellIn - 1;
-
-                if (item.sellIn < 0) {
-                    item.quality = 0;
-                }
-                break;
-            case "Sulfuras, Hand of Ragnaros":
-
-                break;
-            default:
-                if (item.quality > 0) {
-                    item.quality = item.quality - 1;
-                }
-
-                item.sellIn = item.sellIn - 1;
-
-                if (item.sellIn < 0 && item.quality > 0) {
-                    item.quality = item.quality - 1;
-                }
-                break;
-        }
-
+    public List<CleanItem> cleanItems() {
+        return cleanItems;
     }
 }
