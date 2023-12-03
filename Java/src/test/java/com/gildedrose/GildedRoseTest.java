@@ -11,7 +11,7 @@ class GildedRoseTest {
         StringBuilder result = new StringBuilder();
         for (int day = 0; day < 21;day++) {
             testee.updateQuality();
-            result.append("-------- day " + day + " --------").append("\n");
+            result.append("-------- day ").append(day).append(" --------").append("\n");
             result.append("name, sellIn, quality").append("\n");
             for (CleanItem cleanItem: testee.cleanItems() ) {
                 result.append(cleanItem.toString()).append("\n");
