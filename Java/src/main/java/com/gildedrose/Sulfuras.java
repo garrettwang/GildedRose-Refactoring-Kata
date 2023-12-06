@@ -7,7 +7,7 @@ class Sulfuras extends CleanItem {
     }
 
     @Override
-    void doUpdateQuality() {
+    public void doUpdateQuality() {
         //do nothing
     }
 }

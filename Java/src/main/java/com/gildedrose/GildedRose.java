@@ -8,7 +8,7 @@ class GildedRose {
 
     public GildedRose(Item[] items) {
         cleanItems = Arrays.stream(items)
-            .map(item -> CleanItem.createCleanItem(item.name, item.sellIn, item.quality))
+            .map(item -> CleanItemFactory.createCleanItem(item.name, item.sellIn, item.quality))
             .toList();
     }
 

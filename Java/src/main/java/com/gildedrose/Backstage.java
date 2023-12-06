@@ -8,22 +8,33 @@ class Backstage extends CleanItem {
 
     @Override
     void doUpdateQuality() {
-        if (quality < 50) {
-            quality = quality + 1;
+        updateQuality();
 
-            if (sellIn < 11 && quality < 50) {
-                quality = quality + 1;
-            }
+        decreaseSellIn();
 
-            if (sellIn < 6 && quality < 50) {
-                quality = quality + 1;
-            }
-        }
+        setQualityZeroWhenSellInIsNegative();
+    }
 
-        sellIn = sellIn - 1;
-
+    private void setQualityZeroWhenSellInIsNegative() {
         if (sellIn < 0) {
             quality = 0;
         }
     }
+
+
+    @Override
+    void updateQuality() {
+        if (quality < 50) {
+            quality = quality + 1;
+
+            if (sellIn < 11 && quality < 50) {
+                quality++;
+            }
+
+            if (sellIn < 6 && quality < 50) {
+                quality++;
+            }
+        }
+    }
+
 }

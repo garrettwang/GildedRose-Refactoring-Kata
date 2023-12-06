@@ -7,13 +7,24 @@ class AgedBrie extends CleanItem {
     }
 
     @Override
-    void doUpdateQuality() {
-        if (quality < 50) {
-            quality = quality + 1;
-        }
-        sellIn = sellIn - 1;
+    public void doUpdateQuality() {
+        updateQuality();
+        decreaseSellIn();
+        updateQualityWhenSellInIsNegative();
+    }
+
+
+    @Override
+    void updateQualityWhenSellInIsNegative() {
         if (sellIn < 0 && quality < 50) {
-            quality = quality + 1;
+            quality++;
+        }
+    }
+
+     @Override
+     void updateQuality() {
+        if (quality < 50) {
+            quality++;
         }
     }
 }
