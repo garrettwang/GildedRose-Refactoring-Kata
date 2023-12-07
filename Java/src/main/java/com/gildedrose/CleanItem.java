@@ -13,8 +13,8 @@ class CleanItem {
         this.quality = quality;
     }
 
-    void doUpdateQuality() {
-        updateQuality();
+    void doDailyUpdate() {
+        updatePositiveQuality();
         decreaseSellIn();
         updateQualityAfterExpired();
 
@@ -22,18 +22,22 @@ class CleanItem {
 
     void updateQualityAfterExpired() {
         if (sellIn < 0 && quality > 0) {
-            quality = quality - 1;
+            decreaseQuality();
         }
     }
 
     void decreaseSellIn() {
-        sellIn = sellIn - 1;
+        sellIn--;
     }
 
-    private void updateQuality() {
+    private void updatePositiveQuality() {
         if (quality > 0) {
-            quality = quality - 1;
+            decreaseQuality();
         }
+    }
+
+    private void decreaseQuality() {
+        quality--;
     }
 
     @Override

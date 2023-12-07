@@ -6,7 +6,7 @@ class AgedBrie extends CleanItem {
     }
 
     @Override
-    void doUpdateQuality() {
+    void doDailyUpdate() {
         updateQualityForAgedBrie();
         decreaseSellIn();
         updateQualityAfterExpiredForAgedBrie();

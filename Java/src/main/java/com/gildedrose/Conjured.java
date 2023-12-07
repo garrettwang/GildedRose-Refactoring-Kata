@@ -2,12 +2,12 @@ package com.gildedrose;
 
 class Conjured extends CleanItem {
     Conjured(int sellIn, int quality) {
-        super("Conjured Mana Cake", sellIn,quality);
+        super("Conjured Mana Cake", sellIn, quality);
     }
 
 
     @Override
-    void doUpdateQuality() {
+    void doDailyUpdate() {
         updateQualityForConjured();
         decreaseSellIn();
         updateQualityAfterExpired();

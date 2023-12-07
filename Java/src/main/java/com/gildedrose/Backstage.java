@@ -6,7 +6,7 @@ public class Backstage extends CleanItem {
     }
 
     @Override
-    void doUpdateQuality() {
+    void doDailyUpdate() {
         updateQualityForBackstage();
         decreaseSellIn();
         updateQualityAfterExpiredForBackstage();

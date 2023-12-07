@@ -5,6 +5,7 @@ import java.util.List;
 
 class GildedRose {
     private final List<CleanItem> cleanItems;
+
     public GildedRose(Item[] items) {
         this(Arrays.stream(items)
             .map(item -> CleanItemFactory.createCleanItem(item.name, item.sellIn, item.quality))
@@ -16,7 +17,7 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        cleanItems.forEach(CleanItem::doUpdateQuality);
+        cleanItems.forEach(CleanItem::doDailyUpdate);
     }
 
     public List<CleanItem> cleanItems() {
