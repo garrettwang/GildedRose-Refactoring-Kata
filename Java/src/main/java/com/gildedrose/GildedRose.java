@@ -1,19 +1,23 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+import java.util.List;
+
 class GildedRose {
-    Item[] items;
+    List<CleanItem> cleanItems;
 
     public GildedRose(Item[] items) {
-        this.items = items;
+        cleanItems = Arrays.stream(items)
+            .map(item -> new CleanItem(item.name, item.sellIn, item.quality))
+            .toList();
+
     }
 
     public void updateQuality() {
-        for (Item item : items) {
-            doUpdateQuality(item);
-        }
+        cleanItems.forEach(GildedRose::doUpdateQuality);
     }
 
-    private static void doUpdateQuality(Item item) {
+    private static void doUpdateQuality(CleanItem item) {
         switch (item.name) {
             case "Aged Brie" -> {
                 if (item.quality < 50) {
@@ -54,5 +58,9 @@ class GildedRose {
             }
         }
 
+    }
+
+    public List<CleanItem> cleanItems() {
+        return cleanItems;
     }
 }
