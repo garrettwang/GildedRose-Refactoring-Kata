@@ -15,11 +15,23 @@ class CleanItem {
     }
 
     void doUpdateQuality() {
-        if (quality > 0) {
+        updatePositiveQuality();
+        decreaseSellIn();
+        updateQualityAfterExpired();
+    }
+
+    private void updateQualityAfterExpired() {
+        if (sellIn < 0 && quality > 0) {
             quality = quality - 1;
         }
+    }
+
+    void decreaseSellIn() {
         sellIn = sellIn - 1;
-        if (sellIn < 0 && quality > 0) {
+    }
+
+    private void updatePositiveQuality() {
+        if (quality > 0) {
             quality = quality - 1;
         }
     }

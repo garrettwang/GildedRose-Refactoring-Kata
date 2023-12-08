@@ -7,11 +7,19 @@ public class AgedBrie extends CleanItem {
 
     @Override
     void doUpdateQuality() {
-        if (quality < 50) {
+        updateQualityForAgedBrie();
+        decreaseSellIn();
+        updateQualityAfterExpiredForAgedBrie();
+    }
+
+    private void updateQualityAfterExpiredForAgedBrie() {
+        if (sellIn < 0 && quality < 50) {
             quality = quality + 1;
         }
-        sellIn = sellIn - 1;
-        if (sellIn < 0 && quality < 50) {
+    }
+
+    private void updateQualityForAgedBrie() {
+        if (quality < 50) {
             quality = quality + 1;
         }
     }
